@@ -40,7 +40,7 @@ void	player_move(t_player *player)
 {
 	int	speed;
 
-	speed = 3;
+	speed = 10;
 	if (player->move_down)
 		player->pos_y += speed;
 	if (player->move_up)
