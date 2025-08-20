@@ -1,4 +1,4 @@
-#include "../includes/game.h"
+#include "../../includes/cub3d.h"
 
 void	init_player(t_player *player)
 {
@@ -10,43 +10,4 @@ void	init_player(t_player *player)
 	player->move_right = false;
 }
 
-int	update_player_press(int keycode, t_player *player)
-{
-	if (keycode == W)
-		player->move_up = true;
-	if (keycode == S)
-		player->move_down = true;
-	if (keycode == D)
-		player->move_right = true;
-	if (keycode == A)
-		player->move_left = true;
-	return (0);
-}
 
-int	update_player_release(int keycode, t_player *player)
-{
-	if (keycode == W)
-		player->move_up = false;
-	if (keycode == S)
-		player->move_down = false;
-	if (keycode == D)
-		player->move_right = false;
-	if (keycode == A)
-		player->move_left = false;
-	return (0);
-}
-
-void	player_move(t_player *player)
-{
-	int	speed;
-
-	speed = 10;
-	if (player->move_down)
-		player->pos_y += speed;
-	if (player->move_up)
-		player->pos_y -= speed;
-	if (player->move_left)
-		player->pos_x -= speed;
-	if (player->move_right)
-		player->pos_x += speed;
-}

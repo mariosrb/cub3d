@@ -7,6 +7,7 @@
 #include "constants.h"
 #include "types.h"
 #include "parser.h"
+#include "input.h"
 
 #endif
 
