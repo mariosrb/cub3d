@@ -1,6 +1,7 @@
 #ifndef GAME_H
 # define GAME_H
 
+# define TILE_SIZE 64
 # define WIDTH 1280
 # define HEIGHT 720
 
@@ -14,6 +15,8 @@
 # define A 97
 # define S 115
 # define D 100
+# define LEFT 65361
+# define RIGHT 65363
 
 # define PI 3.14159265359
 
@@ -27,24 +30,29 @@ typedef struct s_player
 {
 	float	pos_x;
 	float	pos_y;
+	float	angle;
 
 	bool	move_up;
 	bool	move_down;
 	bool	move_left;
 	bool	move_right;
+	bool	rotate_left;
+	bool	rotate_right;
 }	t_player;
 
 typedef struct s_game
 {
 	t_player	player;
-	void	*mlx;
-	void	*win;
-	void	*img;
+	void		*mlx;
+	void		*win;
+	void		*img;
 
-	char	*data;
-	int 	bpp;
-	int 	size_line;
-	int 	endian;
+	char		*data;
+	int 		bpp;
+	int 		size_line;
+	int 		endian;
+
+	char		**map;
 }	t_game;
 
 typedef struct s_rect
@@ -70,7 +78,7 @@ void	put_pixel(t_game *game, int x, int y, int color);
  * @param size Taille du carré en pixels.
  * @param color Couleur des bords du carré (format 0xRRGGBB).
  */
-void	draw_square(t_game *game, int size, int color);
+void	draw_square(int x, int y, int size, int color, t_game *game);
 
 /**
  * @brief Réinitialise l'image en remplissant le buffer de 0 (noir).

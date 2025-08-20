@@ -10,6 +10,10 @@ int	update_player_press(int keycode, t_player *player)
 		player->move_right = true;
 	if (keycode == A)
 		player->move_left = true;
+	if (keycode == LEFT)
+		player->rotate_left = true;
+	if (keycode == RIGHT)
+		player->rotate_right = true;
 	return (0);
 }
 
@@ -23,5 +27,9 @@ int	update_player_release(int keycode, t_player *player)
 		player->move_right = false;
 	if (keycode == A)
 		player->move_left = false;
+	if (keycode == LEFT)
+		player->rotate_left = false;
+	if (keycode == RIGHT)
+		player->rotate_right = false;
 	return (0);
 }

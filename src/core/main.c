@@ -13,35 +13,30 @@
 // }
 
 // Fonction qui met des pixels
-void	put_pixel(t_game *game, int x, int y, int color)
+void put_pixel(t_game *game, int x, int y, int color)
 {
-	int	pixel;
+	int pixel;
 
 	if (x >= WIDTH || x < 0 || y >= HEIGHT || y < 0)
-		return ;
+		return;
 	pixel = (y * game->size_line) + (x * (game->bpp / 8));
 	game->data[pixel + 0] = (color) & 0xFF;
 	game->data[pixel + 1] = (color >> 8) & 0xFF;
 	game->data[pixel + 2] = (color >> 16) & 0xFF;
 }
 
-void	draw_square(t_game *game, int size, int color)
+void draw_square(int x, int y, int size, int color, t_game *game)
 {
 	int	i;
 	int	j;
-	int	x;
-	int	y;
-
-	x = (int)game->player.pos_x;
-	y = (int)game->player.pos_y;
 
 	j = 0;
-	while (j < size)
+	while (j <= size)
 	{
 		i = 0;
-		while (i < size)
+		while (i <= size)
 		{
-			if (i == 0 || i == size - 1 || j == 0 || j == size - 1)
+			if (i == 0 || i == size || j == 0 || j == size)
 				put_pixel(game, x + i, y + j, color);
 			i++;
 		}
@@ -51,19 +46,54 @@ void	draw_square(t_game *game, int size, int color)
 
 void clear_image(t_game *game)
 {
-    int i = 0;
-    int total = WIDTH * HEIGHT * (game->bpp / 8);
+	int i = 0;
+	int total = WIDTH * HEIGHT * (game->bpp / 8);
 
-    while (i < total)
-    {
-        game->data[i] = 0;
-        i++;
-    }
+	while (i < total)
+	{
+		game->data[i] = 0;
+		i++;
+	}
 }
 
-void	init_game(t_game *g)
+void	draw_map(t_game *game)
+{
+	char	**map;
+
+	map = game->map;
+	for(int i = 0; map[i]; i++)
+		for(int j = 0; map[i][j]; j++)
+			if(map[i][j] == '1')
+				draw_square(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, BLUE, game);
+}
+
+char	**init_map(void)
+{
+	char	**map;
+
+	map = malloc(sizeof(char *) * 11);
+	if (!map)
+		return (NULL);
+
+	map[0] = "111111111111111";
+	map[1] = "100000000000001";
+	map[2] = "100010000000001";
+	map[3] = "100000000001001";
+	map[4] = "100000000000001";
+	map[5] = "100000100000001";
+	map[6] = "100000000000001";
+	map[7] = "100000000000001";
+	map[8] = "100000000000001";
+	map[9] = "111111111111111";
+	map[10] = NULL;
+
+	return (map);
+}
+
+void init_game(t_game *g)
 {
 	init_player(&g->player);
+	g->map = init_map();
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, WIDTH, HEIGHT, "cub3d");
 	g->img = mlx_new_image(g->mlx, WIDTH, HEIGHT);
@@ -71,25 +101,65 @@ void	init_game(t_game *g)
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 }
 
-int draw_loop(void *param)
+bool	is_touching(float px, float py, t_game *game)
 {
-    t_game *game = (t_game *)param;
+	int x = px / TILE_SIZE;
+	int y = py / TILE_SIZE;
 
-    clear_image(game);
-    player_move(&game->player);
-    draw_square(game, 25, 0x00FF00);  // Carré vert de 25px
-    mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-    return (0);
+	if (game->map[y][x] == '1')
+		return (true);
+	return (false);
 }
 
-int	main(void)
+void	draw_ray(t_player *player, t_game *game, float start_x)
 {
-	t_game	game;
+	float	cos_angle;
+	float	sin_angle;
+	float	ray_x;
+	float	ray_y;
+
+	cos_angle = cos(start_x);
+	sin_angle = sin(start_x);
+	ray_x = player->pos_x;
+	ray_y = player->pos_y;
+	while (!is_touching(ray_x, ray_y, game))
+	{
+		put_pixel(game, ray_x, ray_y, RED);
+		ray_x += cos_angle;
+		ray_y += sin_angle;
+	}
+}
+
+int draw_loop(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	clear_image(game);
+	player_move(&game->player);
+	draw_square(game->player.pos_x, game->player.pos_y, 25, GREEN, game);
+	draw_map(game);
+	float	fraction = PI / 3 / WIDTH;
+	float	start_x = game->player.angle - PI / 6;
+	int		i = 0;
+	while (i < WIDTH)
+	{
+		draw_ray(&game->player, game, start_x);
+		start_x += fraction;
+		i++;
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	return (0);
+}
+
+int main(void)
+{
+	t_game game;
 
 	init_game(&game);
 
-	mlx_hook(game.win, 2, 1L<<0, update_player_press, &game.player);
-	mlx_hook(game.win, 3, 1L<<1, update_player_release, &game.player);
+	mlx_hook(game.win, 2, 1L << 0, update_player_press, &game.player);
+	mlx_hook(game.win, 3, 1L << 1, update_player_release, &game.player);
 
 	mlx_loop_hook(game.mlx, draw_loop, &game);
 	mlx_loop(game.mlx);
