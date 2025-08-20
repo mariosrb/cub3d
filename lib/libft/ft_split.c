@@ -83,12 +83,21 @@ char	**ft_split(const char *s, char c)
 
 	if (!s)
 		return (NULL);
+	if (*s == '\0')
+    {
+        strs = malloc(sizeof(char *));
+     if (!strs)
+        return (NULL);
+    strs[0] = NULL;
+        return (strs);
+	}
 	strs = malloc(sizeof(char *) * (count_word(s, c) + 1));
 	if (strs == NULL)
 		return (NULL);
 	if (!add_words(strs, s, c))
 		return (NULL);
 	return (strs);
+
 }
 /*
 void	ft_print(char **strs)

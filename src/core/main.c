@@ -1,4 +1,16 @@
-#include "../includes/game.h"
+#include "../../includes/cub3d.h"
+
+// int	main (int argc, char **argv)
+// {
+// 	(void)argc;
+// 	(void)argv;
+// 	printf("map.cub: %d\n", parser_is_valid_extension("map.cub"));        // 1 ✅
+// 	printf("map.cubewrewr: %d\n", parser_is_valid_extension("map.cubewrewr")); // 0 ❌
+// 	printf("map.cub.txt: %d\n", parser_is_valid_extension("map.cub.txt"));    // 0 ❌
+// 	printf("a.cub: %d\n", parser_is_valid_extension("a.cub"));               // 1 ✅
+// 	printf(".cub: %d\n", parser_is_valid_extension(".cub"));                 // 0 ❌
+// 	return (0);
+// }
 
 // Fonction qui met des pixels
 void	put_pixel(t_game *game, int x, int y, int color)
