@@ -51,20 +51,6 @@ typedef struct s_map
 	int		height;
 }	t_map;
 
-typedef struct s_player
-{
-	double	x;
-	double	y;
-	char	direction; // N, S, E, W
-}	t_player;
-
-typedef struct s_game
-{
-	t_config	config;
-	t_map		map;
-	t_player	player;
-}	t_game;
-
 typedef struct s_color
 {
 	int	r;

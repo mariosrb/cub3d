@@ -20,6 +20,7 @@ LIBFTDIR = lib/libft
 # Source files (architecture modulaire)
 SRCS = $(SRCDIR)/core/main.c \
        $(SRCDIR)/core/game_init.c \
+	   $(SRCDIR)/core/player.c \
        $(SRCDIR)/parsing/parser_main.c \
        $(SRCDIR)/parsing/parser_config.c \
        $(SRCDIR)/parsing/parser_utils.c \
@@ -44,21 +45,27 @@ INCLUDES = -Iincludes -I$(LIBFTDIR)
 
 # Libraries
 LIBFT = $(LIBFTDIR)/libft.a
+MLXDIR = lib/minilibx-linux
+MLX = $(MLXDIR)/libmlx.a
 
-# # MLX (adapte selon ton système)
-# UNAME = $(shell uname)
-# ifeq ($(UNAME), Darwin)
-# 	# macOS
-# 	MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
-# else
-# 	# Linux
-# 	MLX_FLAGS = -lmlx -lXext -lX11 -lm
-# endif
+# MLX (adapte selon ton système)
+UNAME = $(shell uname)
+ifeq ($(UNAME), Darwin)
+	# macOS
+	MLX_FLAGS = -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit
+else
+	# Linux
+	MLX_FLAGS = -L$(MLXDIR) -lmlx -lXext -lX11 -lm -lz
+endif
 
 LDFLAGS = -L$(LIBFTDIR) -lft $(MLX_FLAGS) -lm
 
 # Rules
-all: $(LIBFT) $(NAME)
+all: $(LIBFT) $(MLX) $(NAME)
+
+$(MLX):
+	@echo "📚 Building MinilibX..."
+	@make -C $(MLXDIR) --no-print-directory
 
 $(NAME): $(OBJS)
 	@echo "🔗 Linking $(NAME)..."
