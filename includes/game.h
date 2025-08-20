@@ -17,6 +17,7 @@
 # define D 100
 # define LEFT 65361
 # define RIGHT 65363
+# define DEBUG 1
 
 # define PI 3.14159265359
 

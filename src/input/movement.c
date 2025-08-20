@@ -9,8 +9,8 @@ void	player_move(t_player *player)
 
 	cos_angle = cos(player->angle);
 	sin_angle = sin(player->angle);
-	angle_speed = 0.1;
-	speed = 5;
+	angle_speed = 0.03;
+	speed = 3;
 
 	// Rotation
 	if (player->rotate_left)

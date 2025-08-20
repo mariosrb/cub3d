@@ -1,17 +1,5 @@
 #include "../../includes/cub3d.h"
 
-// int	main (int argc, char **argv)
-// {
-// 	(void)argc;
-// 	(void)argv;
-// 	printf("map.cub: %d\n", parser_is_valid_extension("map.cub"));        // 1 ✅
-// 	printf("map.cubewrewr: %d\n", parser_is_valid_extension("map.cubewrewr")); // 0 ❌
-// 	printf("map.cub.txt: %d\n", parser_is_valid_extension("map.cub.txt"));    // 0 ❌
-// 	printf("a.cub: %d\n", parser_is_valid_extension("a.cub"));               // 1 ✅
-// 	printf(".cub: %d\n", parser_is_valid_extension(".cub"));                 // 0 ❌
-// 	return (0);
-// }
-
 // Fonction qui met des pixels
 void put_pixel(t_game *game, int x, int y, int color)
 {
@@ -79,10 +67,10 @@ char	**init_map(void)
 	map[1] = "100000000000001";
 	map[2] = "100010000000001";
 	map[3] = "100000000001001";
-	map[4] = "100000000000001";
+	map[4] = "100000100000001";
 	map[5] = "100000100000001";
-	map[6] = "100000000000001";
-	map[7] = "100000000000001";
+	map[6] = "100000100000001";
+	map[7] = "100000100000001";
 	map[8] = "100000000000001";
 	map[9] = "111111111111111";
 	map[10] = NULL;
@@ -111,7 +99,26 @@ bool	is_touching(float px, float py, t_game *game)
 	return (false);
 }
 
-void	draw_ray(t_player *player, t_game *game, float start_x)
+float	distance(float x, float y)
+{
+	return (sqrt(x * x + y * y));
+}
+
+float	fishey_fix(t_game *game, float x2, float y2)
+{
+	float	delta_x;
+	float	delta_y;
+	float	angle;
+	float	dist_fix;
+
+	delta_x = x2 - game->player.pos_x;
+	delta_y = y2 - game->player.pos_y;
+	angle = atan2(delta_y, delta_x) - game->player.angle;
+	dist_fix = distance(delta_x, delta_y) * cos(angle);
+	return (dist_fix);
+}
+
+void	draw_ray(t_player *player, t_game *game, float start_x, int i)
 {
 	float	cos_angle;
 	float	sin_angle;
@@ -124,11 +131,25 @@ void	draw_ray(t_player *player, t_game *game, float start_x)
 	ray_y = player->pos_y;
 	while (!is_touching(ray_x, ray_y, game))
 	{
-		put_pixel(game, ray_x, ray_y, RED);
+		if (DEBUG)
+			put_pixel(game, ray_x, ray_y, RED);
 		ray_x += cos_angle;
 		ray_y += sin_angle;
 	}
+	if (!DEBUG)
+	{
+		float	dist = fishey_fix(game, ray_x, ray_y);
+		float	height = (TILE_SIZE / dist) * (WIDTH / 2);
+		int		start_y = (HEIGHT - height) / 2;
+		int		end = start_y + height;
+		while (start_y < end)
+		{
+			put_pixel(game, i, start_y, 225);
+			start_y++;
+		}
+	}
 }
+
 
 int draw_loop(void *param)
 {
@@ -137,14 +158,17 @@ int draw_loop(void *param)
 	game = (t_game *)param;
 	clear_image(game);
 	player_move(&game->player);
-	draw_square(game->player.pos_x, game->player.pos_y, 25, GREEN, game);
-	draw_map(game);
+	if (DEBUG)
+	{
+		draw_square(game->player.pos_x, game->player.pos_y, 25, GREEN, game);
+		draw_map(game);
+	}
 	float	fraction = PI / 3 / WIDTH;
 	float	start_x = game->player.angle - PI / 6;
 	int		i = 0;
 	while (i < WIDTH)
 	{
-		draw_ray(&game->player, game, start_x);
+		draw_ray(&game->player, game, start_x, i);
 		start_x += fraction;
 		i++;
 	}
