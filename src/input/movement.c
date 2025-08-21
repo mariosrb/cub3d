@@ -13,11 +13,32 @@ void	player_move(t_player *player)
 	speed = 3;
 
 	// Rotation
-	if (player->rotate_left)
-		player->angle -= angle_speed;
-	if (player->rotate_right)
-		player->angle += angle_speed;
+	// if (player->rotate_left)
+	// 	player->angle -= angle_speed;
+	// if (player->rotate_right)
+	// 	player->angle += angle_speed;
 
+	if (player->rotate_left)
+    {
+        double oldDirX = player->dirX;
+        player->dirX = player->dirX * cos(angle_speed) - player->dirY * sin(angle_speed);
+        player->dirY = oldDirX * sin(angle_speed) + player->dirY * cos(angle_speed);
+
+        double oldPlaneX = player->planeX;
+        player->planeX = player->planeX * cos(angle_speed) - player->planeY * sin(angle_speed);
+        player->planeY = oldPlaneX * sin(angle_speed) + player->planeY * cos(angle_speed);
+    }
+	if (player->rotate_right)
+	{
+		double oldDirX = player->dirX;
+        player->dirX = player->dirX * cos(-angle_speed) - player->dirY * sin(-angle_speed);
+        player->dirY = oldDirX * sin(-angle_speed) + player->dirY * cos(-angle_speed);
+
+        double oldPlaneX = player->planeX;
+        player->planeX = player->planeX * cos(-angle_speed) - player->planeY * sin(-angle_speed);
+        player->planeY = oldPlaneX * sin(-angle_speed) + player->planeY * cos(-angle_speed);
+
+	}
 	if (player->angle > 2 * PI)
 		player->angle = 0;
 	if (player->angle < 0)
