@@ -17,7 +17,7 @@
 # define D 100
 # define LEFT 65361
 # define RIGHT 65363
-# define DEBUG 1
+# define DEBUG 0
 
 # define PI 3.14159265359
 
@@ -33,6 +33,11 @@ typedef struct s_player
 	float	pos_y;
 	float	angle;
 
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	
 	bool	move_up;
 	bool	move_down;
 	bool	move_left;
