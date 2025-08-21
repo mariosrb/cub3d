@@ -4,11 +4,11 @@ void	player_move(t_player *player)
 {
 	int		speed;
 	float	angle_speed;
-	float	cos_angle;
-	float	sin_angle;
+	// float	cos_angle;
+	// float	sin_angle;
 
-	cos_angle = cos(player->angle);
-	sin_angle = sin(player->angle);
+	// cos_angle = cos(player->angle);
+	// sin_angle = sin(player->angle);
 	angle_speed = 0.03;
 	speed = 3;
 
@@ -39,29 +39,52 @@ void	player_move(t_player *player)
         player->planeY = oldPlaneX * sin(-angle_speed) + player->planeY * cos(-angle_speed);
 
 	}
-	if (player->angle > 2 * PI)
-		player->angle = 0;
-	if (player->angle < 0)
-		player->angle = 2 * PI;
+	// if (player->angle > 2 * PI)
+	// 	player->angle = 0;
+	// if (player->angle < 0)
+	// 	player->angle = 2 * PI;
 
-	if (player->move_down)
-	{
-		player->pos_x -= cos_angle * speed;
-		player->pos_y -= sin_angle * speed;
-	}
+	// if (player->move_down)
+	// {
+	// 	player->pos_x -= cos_angle * speed;
+	// 	player->pos_y -= sin_angle * speed;
+	// }
+	// if (player->move_up)
+	// {
+	// 	player->pos_x += cos_angle * speed;
+	// 	player->pos_y += sin_angle * speed;
+	// }
+	// if (player->move_left)
+	// {
+	// 	player->pos_x += cos(player->angle - PI/2) * speed;
+	// 	player->pos_y += sin(player->angle - PI/2) * speed;
+	// }
+	// if (player->move_right)
+	// {
+	// 	player->pos_x += cos(player->angle + PI/2) * speed;
+	// 	player->pos_y += sin(player->angle + PI/2) * speed;
+	// }
+		// MOUVEMENTS avec vector system (plus besoin d'angle !)
 	if (player->move_up)
 	{
-		player->pos_x += cos_angle * speed;
-		player->pos_y += sin_angle * speed;
+		player->pos_x += player->dirX * speed;
+		player->pos_y += player->dirY * speed;
+	}
+	if (player->move_down)
+	{
+		player->pos_x -= player->dirX * speed;
+		player->pos_y -= player->dirY * speed;
 	}
 	if (player->move_left)
 	{
-		player->pos_x += cos(player->angle - PI/2) * speed;
-		player->pos_y += sin(player->angle - PI/2) * speed;
+		// Strafe = perpendiculaire à direction = utilise plane vector
+		player->pos_x -= player->planeX * speed;
+		player->pos_y -= player->planeY * speed;
 	}
 	if (player->move_right)
 	{
-		player->pos_x += cos(player->angle + PI/2) * speed;
-		player->pos_y += sin(player->angle + PI/2) * speed;
+		// Strafe = perpendiculaire à direction = utilise plane vector
+		player->pos_x += player->planeX * speed;
+		player->pos_y += player->planeY * speed;
 	}
 }
