@@ -1,10 +1,5 @@
 #include "../includes/cub3d.h"
 
-// t_error_code	parser_parse_file(const char *filename, t_game *game)
-// {
-
-// }
-
 static char	**parser_second_step_read(const char *filename, int line_count)
 {
 	int		i;

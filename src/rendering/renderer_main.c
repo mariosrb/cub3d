@@ -2,9 +2,10 @@
 
 void	draw_map(t_game *game)
 {
-	char	**map;
-	int		i;
-	int		j;
+	t_square	square;
+	char		**map;
+	int			i;
+	int			j;
 
 	map = game->map;
 	i = 0;
@@ -14,7 +15,13 @@ void	draw_map(t_game *game)
 		while (map[i][j])
 		{
 			if (map[i][j] == '1')
-				draw_square(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, BLUE, game);
+			{
+				square.x = j * TILE_SIZE;
+				square.y = i * TILE_SIZE;
+				square.size = TILE_SIZE;
+				square.color = BLUE;
+				draw_square(square, game);
+			}
 			j++;
 		}
 		i++;
@@ -23,6 +30,7 @@ void	draw_map(t_game *game)
 
 int	draw_loop(void *param)
 {
+	t_square	player_square;
     t_game *game = (t_game *)param;
 	int		x;
 
@@ -32,7 +40,11 @@ int	draw_loop(void *param)
 
     if (DEBUG)
     {
-        draw_square(game->player.pos_x, game->player.pos_y, 25, GREEN, game);
+		player_square.x = game->player.pos_x;
+		player_square.y = game->player.pos_y;
+		player_square.size = 25;
+		player_square.color = GREEN;
+        draw_square(player_square, game);
         draw_map(game);
     }
     while (x < WIDTH)

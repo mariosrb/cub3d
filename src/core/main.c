@@ -13,19 +13,19 @@ void put_pixel(t_game *game, int x, int y, int color)
 	game->data[pixel + 2] = (color >> 16) & 0xFF;
 }
 
-void draw_square(int x, int y, int size, int color, t_game *game)
+void draw_square(t_square square, t_game *game)
 {
 	int	i;
 	int	j;
 
 	j = 0;
-	while (j <= size)
+	while (j <= square.size)
 	{
 		i = 0;
-		while (i <= size)
+		while (i <= square.size)
 		{
-			if (i == 0 || i == size || j == 0 || j == size)
-				put_pixel(game, x + i, y + j, color);
+			if (i == 0 || i == square.size || j == 0 || j == square.size)
+				put_pixel(game, square.x + i, square.y + j, square.color);
 			i++;
 		}
 		j++;

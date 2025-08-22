@@ -60,11 +60,14 @@ typedef struct s_game
 	char		**map;
 }	t_game;
 
-typedef struct s_rect
+typedef struct s_square
 {
-	int	size;
-	int	color;
-}	t_rect;
+	int			x;
+	int			y;
+	int			size;
+	int			color;
+}	t_square;
+
 
 char	**init_map(void);
 void	init_game(t_game *g);
@@ -86,7 +89,7 @@ void	put_pixel(t_game *game, int x, int y, int color);
  * @param size Taille du carré en pixels.
  * @param color Couleur des bords du carré (format 0xRRGGBB).
  */
-void	draw_square(int x, int y, int size, int color, t_game *game);
+void	draw_square(t_square square, t_game *game);
 
 /**
  * @brief Initialise le jeu : joueur, MLX, fenêtre et image.
