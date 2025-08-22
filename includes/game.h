@@ -31,13 +31,9 @@ typedef struct s_player
 {
 	float	pos_x;
 	float	pos_y;
+
 	float	angle;
 
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-	
 	bool	move_up;
 	bool	move_down;
 	bool	move_left;
