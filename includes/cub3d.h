@@ -8,6 +8,7 @@
 #include "types.h"
 #include "parser.h"
 #include "input.h"
+#include "renderer.h"
 
 #endif
 

@@ -32,7 +32,10 @@ typedef struct s_player
 	float	pos_x;
 	float	pos_y;
 
-	float	angle;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
 
 	bool	move_up;
 	bool	move_down;
@@ -63,6 +66,9 @@ typedef struct s_rect
 	int	color;
 }	t_rect;
 
+char	**init_map(void);
+void	init_game(t_game *g);
+
 /**
  * @brief Place un pixel de couleur dans l'image à la position (x, y).
  *
@@ -81,13 +87,6 @@ void	put_pixel(t_game *game, int x, int y, int color);
  * @param color Couleur des bords du carré (format 0xRRGGBB).
  */
 void	draw_square(int x, int y, int size, int color, t_game *game);
-
-/**
- * @brief Réinitialise l'image en remplissant le buffer de 0 (noir).
- *
- * @param game Structure principale du jeu contenant le buffer d'image.
- */
-void	clear_image(t_game *game);
 
 /**
  * @brief Initialise le jeu : joueur, MLX, fenêtre et image.
