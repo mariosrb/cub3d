@@ -3,12 +3,22 @@
 void	draw_map(t_game *game)
 {
 	char	**map;
+	int		i;
+	int		j;
 
 	map = game->map;
-	for(int i = 0; map[i]; i++)
-		for(int j = 0; map[i][j]; j++)
-			if(map[i][j] == '1')
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '1')
 				draw_square(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, BLUE, game);
+			j++;
+		}
+		i++;
+	}
 }
 
 int	draw_loop(void *param)
