@@ -35,8 +35,8 @@
 
 char	**init_map(void);
 void	init_game(t_game *g);
-int		load_texture(t_game *game, char *path);
-int		get_texture_pixel(t_game *game, int x, int y);
+int 	load_texture(t_game *game, char *path, int texture_index);
+int		get_texture_pixel(t_game *game, int texture_index, int x, int y);
 
 /**
  * @brief Place un pixel de couleur dans l'image à la position (x, y).

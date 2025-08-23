@@ -95,15 +95,16 @@ typedef struct s_game
 	int 		endian;
 
 	char		**map;
-	
+
 	// UNE SEULE TEXTURE pour commencer
-	void		*texture;        // Une seule image MLX
-	char		*tex_data;       // Pointeur vers data texture
-	int			tex_width;       // Largeur texture
-	int			tex_height;      // Hauteur texture
-	int			tex_bpp;         // Bits per pixel
-	int			tex_line_len;    // Line length
-	int			tex_endian;      // Endian
+	void		*textures[4];        // Une seule image MLX
+	char		*tex_data[4];       // Pointeur vers data texture
+	int			tex_width[4];       // Largeur texture
+	int			tex_height[4];      // Hauteur texture
+	int			tex_bpp[4];         // Bits per pixel
+	int			tex_line_len[4];    // Line length
+	int			tex_endian[4];      // Endian
+
 }	t_game;
 
 typedef struct s_square

@@ -82,14 +82,15 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
         wallX = posX + perpWallDist * rayDirX;
     wallX -= floor(wallX);  // Garde seulement la partie décimale
 
+	int texNum = (game->map[mapY][mapX] - '1') % 4;
     // Calculate texX (colonne de texture à utiliser)
-    int texX = (int)(wallX * game->tex_width);
+    int texX = (int)(wallX * game->tex_width[texNum]);
 
     // Ajuster texX selon direction pour éviter les miroirs
     if (side == 0 && rayDirX > 0)
-        texX = game->tex_width - texX - 1;
+        texX = game->tex_width[texNum] - texX - 1;
     if (side == 1 && rayDirY < 0)
-        texX = game->tex_width - texX - 1;
+        texX = game->tex_width[texNum] - texX - 1;
 
     //Calculate height of line to draw on screen
     int lineHeight = (int)(HEIGHT / perpWallDist);
@@ -102,14 +103,23 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
     if(drawEnd >= HEIGHT)
 		drawEnd = HEIGHT - 1;
 
-    //choose wall color (pour l'instant, on change à l'étape suivante)
-    int color = 255;
+	// Calcul du pas de texture (step) et position de départ
+	double step = 1.0 * game->tex_height[texNum] / lineHeight;
+	double texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
 
-    //give x and y sides different brightness
-    if (side == 1)
-        color = color / 2;
-
-    //draw the pixels of the stripe as a vertical line
 	for(int y = drawStart; y < drawEnd; y++)
+	{
+		// Cast de la coordonnée de texture en entier
+		int texY = (int)texPos & (game->tex_height[texNum] - 1);
+		texPos += step;
+
+		// Récupérer la couleur du pixel de texture
+		int color = get_texture_pixel(game, texNum ,texX, texY);
+
+		// Assombrir les côtés Y pour l'effet d'éclairage
+		if(side == 1)
+			color = (color >> 1) & 8355711; // Divise RGB par 2
+
 		put_pixel(game, x, y, color);
+	}
 }
