@@ -74,6 +74,23 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
     else
         perpWallDist = (sideDistY - deltaDistY);
 
+    // Calculate wallX (où exactement le rayon touche le mur)
+    double wallX;
+    if (side == 0)
+        wallX = posY + perpWallDist * rayDirY;
+    else
+        wallX = posX + perpWallDist * rayDirX;
+    wallX -= floor(wallX);  // Garde seulement la partie décimale
+
+    // Calculate texX (colonne de texture à utiliser)
+    int texX = (int)(wallX * game->tex_width);
+
+    // Ajuster texX selon direction pour éviter les miroirs
+    if (side == 0 && rayDirX > 0)
+        texX = game->tex_width - texX - 1;
+    if (side == 1 && rayDirY < 0)
+        texX = game->tex_width - texX - 1;
+
     //Calculate height of line to draw on screen
     int lineHeight = (int)(HEIGHT / perpWallDist);
 
@@ -85,13 +102,14 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
     if(drawEnd >= HEIGHT)
 		drawEnd = HEIGHT - 1;
 
-    //choose wall color (comme le tutoriel)
-    int color = 255; // blanc par défaut
+    //choose wall color (pour l'instant, on change à l'étape suivante)
+    int color = 255;
 
     //give x and y sides different brightness
-    if (side == 1) color = color / 2;
+    if (side == 1)
+        color = color / 2;
 
     //draw the pixels of the stripe as a vertical line
-    for(int y = drawStart; y < drawEnd; y++)
-        put_pixel(game, x, y, color);
+	for(int y = drawStart; y < drawEnd; y++)
+		put_pixel(game, x, y, color);
 }

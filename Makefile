@@ -27,6 +27,7 @@ SRCS = $(SRCDIR)/core/main.c \
        $(SRCDIR)/rendering/renderer_main.c \
        $(SRCDIR)/rendering/raycasting.c \
 	   $(SRCDIR)/rendering/draw_utils.c \
+	   $(SRCDIR)/rendering/texture_manager.c \
        $(SRCDIR)/input/input_handler.c \
        $(SRCDIR)/input/movement.c \
        $(SRCDIR)/utils/error_handler.c \

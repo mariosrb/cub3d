@@ -19,6 +19,11 @@
 # define RIGHT 65363
 # define DEBUG 0
 
+# define TEX_NORTH 0
+# define TEX_SOUTH 1
+# define TEX_EAST 2
+# define TEX_WEST 3
+
 # define PI 3.14159265359
 
 #include "../lib/minilibx-linux/mlx.h"
@@ -26,14 +31,12 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <math.h>
-
-typedef	struct s_game t_game;
-typedef struct s_square t_square;
-typedef struct s_player t_player;
-typedef struct s_map t_map;
+#include "types.h"
 
 char	**init_map(void);
 void	init_game(t_game *g);
+int		load_texture(t_game *game, char *path);
+int		get_texture_pixel(t_game *game, int x, int y);
 
 /**
  * @brief Place un pixel de couleur dans l'image à la position (x, y).
