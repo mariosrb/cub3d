@@ -27,47 +27,10 @@
 #include <stdbool.h>
 #include <math.h>
 
-typedef struct s_player
-{
-	float	pos_x;
-	float	pos_y;
-
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-
-	bool	move_up;
-	bool	move_down;
-	bool	move_left;
-	bool	move_right;
-	bool	rotate_left;
-	bool	rotate_right;
-}	t_player;
-
-typedef struct s_game
-{
-	t_player	player;
-	void		*mlx;
-	void		*win;
-	void		*img;
-
-	char		*data;
-	int 		bpp;
-	int 		size_line;
-	int 		endian;
-
-	char		**map;
-}	t_game;
-
-typedef struct s_square
-{
-	int			x;
-	int			y;
-	int			size;
-	int			color;
-}	t_square;
-
+typedef	struct s_game t_game;
+typedef struct s_square t_square;
+typedef struct s_player t_player;
+typedef struct s_map t_map;
 
 char	**init_map(void);
 void	init_game(t_game *g);
