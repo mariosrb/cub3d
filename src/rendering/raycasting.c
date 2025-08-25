@@ -110,7 +110,11 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
 	for(int y = drawStart; y < drawEnd; y++)
 	{
 		// Cast de la coordonnée de texture en entier
-		int texY = (int)texPos & (game->tex_height[texNum] - 1);
+		int texY = (int)texPos;
+		if (texY >= game->tex_height[texNum])
+			texY = game->tex_height[texNum] - 1;
+		if (texY < 0)
+			texY = 0;
 		texPos += step;
 
 		// Récupérer la couleur du pixel de texture
