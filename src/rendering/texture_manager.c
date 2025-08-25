@@ -41,5 +41,5 @@ int get_texture_pixel(t_game *game, int texture_index, int x, int y)
 
     color = *(int*)(game->tex_data[texture_index] + pixel_index);
 
-    return (color & 0xFFFFFF);
+    return (color);
 }

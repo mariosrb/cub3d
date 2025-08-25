@@ -16,5 +16,6 @@ void init_game(t_game *g)
 		printf("Error\nTexture loading failed\n");
 		exit(1);
 	}
+	printf("Texture dimensions: %ls x %ls\n", g->tex_width, g->tex_height);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 }
