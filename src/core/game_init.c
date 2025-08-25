@@ -16,6 +16,13 @@ void init_game(t_game *g)
 		printf("Error\nTexture loading failed\n");
 		exit(1);
 	}
-	printf("Texture dimensions: %ls x %ls\n", g->tex_width, g->tex_height);
+	g->config.floor_b = 128;
+	g->config.floor_g = 128;
+	g->config.floor_r = 128;
+	g->config.ceiling_b = 235;
+	g->config.ceiling_r = 135;
+	g->config.ceiling_g = 206;
+	g->config.floor_color = create_rgb(g->config.floor_r, g->config.floor_g, g->config.floor_b);
+	g->config.ceiling_color = create_rgb(g->config.ceiling_r, g->config.ceiling_g, g->config.ceiling_b);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 }

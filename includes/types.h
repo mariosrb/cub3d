@@ -61,6 +61,8 @@ typedef struct s_config
 	int			ceiling_g;
 	int			ceiling_b;
 	t_texture	textures[4];
+	int 		floor_color;
+	int			ceiling_color;
 }	t_config;
 
 typedef struct s_player
@@ -96,14 +98,14 @@ typedef struct s_game
 
 	char		**map;
 
-	// UNE SEULE TEXTURE pour commencer
-	void		*textures[4];        // Une seule image MLX
-	char		*tex_data[4];       // Pointeur vers data texture
-	int			tex_width[4];       // Largeur texture
-	int			tex_height[4];      // Hauteur texture
-	int			tex_bpp[4];         // Bits per pixel
-	int			tex_line_len[4];    // Line length
-	int			tex_endian[4];      // Endian
+	// // UNE SEULE TEXTURE pour commencer
+	// void		*textures[4];        // Une seule image MLX
+	// char		*tex_data[4];       // Pointeur vers data texture
+	// int			tex_width[4];       // Largeur texture
+	// int			tex_height[4];      // Hauteur texture
+	// int			tex_bpp[4];         // Bits per pixel
+	// int			tex_line_len[4];    // Line length
+	// int			tex_endian[4];      // Endian
 
 }	t_game;
 

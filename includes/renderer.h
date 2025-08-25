@@ -13,5 +13,6 @@ void	draw_map(t_game *game);
  * @param game Structure principale du jeu contenant le buffer d'image.
  */
 void	clear_image(t_game *game);
+int		create_rgb(int r, int g, int b);
 
 #endif

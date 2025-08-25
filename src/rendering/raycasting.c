@@ -82,15 +82,29 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
         wallX = posX + perpWallDist * rayDirX;
     wallX -= floor(wallX);  // Garde seulement la partie décimale
 
-	int texNum = (game->map[mapY][mapX] - '1') % 4;
-    // Calculate texX (colonne de texture à utiliser)
-    int texX = (int)(wallX * game->tex_width[texNum]);
+	// Déterminer la texture selon la direction du mur touché
+	int texNum;
+	if (side == 0) // Mur vertical (Nord/Sud)
+	{
+		if (rayDirX > 0)
+			texNum = 2; // East (on regarde vers l'est, mur est à l'est)
+		else
+			texNum = 3; // West (on regarde vers l'ouest, mur est à l'ouest)
+	}
+	else // Mur horizontal (Est/Ouest)
+	{
+		if (rayDirY > 0)
+			texNum = 1; // South (on regarde vers le sud, mur est au sud)
+		else
+			texNum = 0; // North (on regarde vers le nord, mur est au nord)
+	}
+    int texX = (int)(wallX * game->config.textures[texNum].width);
 
     // Ajuster texX selon direction pour éviter les miroirs
     if (side == 0 && rayDirX > 0)
-        texX = game->tex_width[texNum] - texX - 1;
+        texX = game->config.textures[texNum].width - texX - 1;
     if (side == 1 && rayDirY < 0)
-        texX = game->tex_width[texNum] - texX - 1;
+        texX = game->config.textures[texNum].width - texX - 1;
 
     //Calculate height of line to draw on screen
     int lineHeight = (int)(HEIGHT / perpWallDist);
@@ -104,15 +118,15 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
 		drawEnd = HEIGHT - 1;
 
 	// Calcul du pas de texture (step) et position de départ
-	double step = 1.0 * game->tex_height[texNum] / lineHeight;
+	double step = 1.0 * game->config.textures[texNum].height / lineHeight;
 	double texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
 
 	for(int y = drawStart; y < drawEnd; y++)
 	{
 		// Cast de la coordonnée de texture en entier
 		int texY = (int)texPos;
-		if (texY >= game->tex_height[texNum])
-			texY = game->tex_height[texNum] - 1;
+		if (texY >= game->config.textures[texNum].height)
+			texY = game->config.textures[texNum].height - 1;
 		if (texY < 0)
 			texY = 0;
 		texPos += step;
@@ -126,4 +140,8 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
 
 		put_pixel(game, x, y, color);
 	}
+	for (int y = 0; y < drawStart; y++)
+		put_pixel(game, x, y, game->config.ceiling_color);
+	for (int y = drawEnd; y < HEIGHT; y++)
+		put_pixel(game, x, y, game->config.floor_color);
 }
