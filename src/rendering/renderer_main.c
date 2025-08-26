@@ -3,18 +3,16 @@
 void	draw_map(t_game *game)
 {
 	t_square	square;
-	char		**map;
 	int			i;
 	int			j;
 
-	map = game->map;
 	i = 0;
-	while (map[i])
+	while (i < game->mapp.height && game->mapp.grid[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (j < game->mapp.width && game->mapp.grid[i][j])
 		{
-			if (map[i][j] == '1')
+			if (game->mapp.grid[i][j] == '1')
 			{
 				square.x = j * TILE_SIZE;
 				square.y = i * TILE_SIZE;

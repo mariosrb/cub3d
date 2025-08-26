@@ -62,7 +62,9 @@ bool	is_touching(float px, float py, t_game *game)
 
 	x = px / TILE_SIZE;
 	y = py / TILE_SIZE;
-	if (game->map[y][x] == '1')
+	if (x < 0 || y < 0 || y >= game->mapp.height || x >= game->mapp.width)
+		return (true);
+	if (game->mapp.grid[y][x] == '1')
 		return (true);
 	return (false);
 }

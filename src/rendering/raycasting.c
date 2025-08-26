@@ -64,8 +64,9 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
             side = 1;
         }
         //Check if ray has hit a wall
-        if (mapX < 0 || mapY < 0 || !game->map[mapY] || !game->map[mapY][mapX] || game->map[mapY][mapX] == '1')
-            hit = 1;
+		if (mapX < 0 || mapY < 0 || mapY >= game->mapp.height ||
+			mapX >= game->mapp.width || game->mapp.grid[mapY][mapX] == '1')
+			hit = 1;
     }
 
     //Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)

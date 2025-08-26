@@ -1,8 +1,32 @@
 #include "../../includes/cub3d.h"
 
+static void	init_map_structure(t_map *mapp)
+{
+	mapp->grid = malloc(sizeof(char *) * 11);
+	if (!mapp->grid)
+		return ;
+
+	mapp->grid[0] = "111111111111111";
+	mapp->grid[1] = "100000000000001";
+	mapp->grid[2] = "100010000000001";
+	mapp->grid[3] = "100010010001001";
+	mapp->grid[4] = "100000101000001";
+	mapp->grid[5] = "100100101000001";
+	mapp->grid[6] = "100000111000001";
+	mapp->grid[7] = "100000000000001";
+	mapp->grid[8] = "100000000000001";
+	mapp->grid[9] = "111111111111111";
+	mapp->grid[10] = NULL;
+
+	mapp->width = 15;
+	mapp->height = 10;
+}
+
 void init_game(t_game *g)
 {
-	init_player(&g->player);
+	init_map_structure(&g->mapp);
+	g->map = init_map();
+	init_player(&g->player, g);
 	g->map = init_map();
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, WIDTH, HEIGHT, "cub3d");

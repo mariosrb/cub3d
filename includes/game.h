@@ -69,6 +69,7 @@ void	init_game(t_game *g);
  *
  * @param player Pointeur vers la structure joueur à initialiser.
  */
-void	init_player(t_player *player);
+void	init_player(t_player *player, t_game *game);
+
 
 #endif
