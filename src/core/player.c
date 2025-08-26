@@ -110,23 +110,23 @@ static void	set_camera_plane(t_player *player, t_direction dir)
 {
 	if (dir == NORTH)
 	{
-		player->planeX = 0.66;
+		player->planeX = -0.66;
 		player->planeY = 0.0;
 	}
 	else if (dir == SOUTH)
 	{
-		player->planeX = -0.66;
+		player->planeX = 0.66;
 		player->planeY = 0.0;
 	}
 	else if (dir == EAST)
 	{
 		player->planeX = 0.0;
-		player->planeY = 0.66;
+		player->planeY = -0.66;
 	}
 	else if (dir == WEST)
 	{
 		player->planeX = 0.0;
-		player->planeY = -0.66;
+		player->planeY = 0.66;
 	}
 }
 
