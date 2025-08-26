@@ -57,9 +57,11 @@ char	**init_map(void)
 
 bool	is_touching(float px, float py, t_game *game)
 {
-	int x = px / TILE_SIZE;
-	int y = py / TILE_SIZE;
+	int x;
+	int y;
 
+	x = px / TILE_SIZE;
+	y = py / TILE_SIZE;
 	if (game->map[y][x] == '1')
 		return (true);
 	return (false);
