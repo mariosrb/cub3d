@@ -93,7 +93,6 @@ typedef struct s_game
 	int 			bpp;
 	int 			size_line;
 	int 			endian;
-	char			**map;
 }	t_game;
 
 typedef struct s_square

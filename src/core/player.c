@@ -1,21 +1,5 @@
 #include "../../includes/cub3d.h"
 
-// void	init_player(t_player *player)
-// {
-// 	player->pos_x = WIDTH / 2;
-// 	player->pos_y = HEIGHT / 2;
-// 	player->dirX = -1.0;
-// 	player->dirY = 0.0;
-// 	player->planeX = 0.0;
-// 	player->planeY = 0.66;
-// 	player->move_down = false;
-// 	player->move_up = false;
-// 	player->move_left = false;
-// 	player->move_right = false;
-// 	player->rotate_left = false;
-// 	player->rotate_right = false;
-// }
-
 // Verifie si le char correspond a une dir valide
 static bool	is_direction_char(char c)
 {
@@ -44,7 +28,7 @@ static t_start_pos	init_start_pos(t_game *game, int x, int y)
 	start.x = x;
 	start.y = y;
 	start.dir = char_to_direction(game->mapp.grid[y][x]);
-	game->mapp.grid[y][x] = '0';
+	// game->mapp.grid[y][x] = '0';
 	return (start);
 }
 

@@ -7,7 +7,7 @@ static void	init_map_structure(t_map *mapp)
 		return ;
 
 	mapp->grid[0] = "111111111111111";
-	mapp->grid[1] = "100000N00000001";
+	mapp->grid[1] = "100000E00000001";
 	mapp->grid[2] = "100010000100001";
 	mapp->grid[3] = "100010010001001";
 	mapp->grid[4] = "100000101000001";
@@ -25,9 +25,7 @@ static void	init_map_structure(t_map *mapp)
 void init_game(t_game *g)
 {
 	init_map_structure(&g->mapp);
-	g->map = init_map();
 	init_player(&g->player, g);
-	g->map = init_map();
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, WIDTH, HEIGHT, "cub3d");
 	g->img = mlx_new_image(g->mlx, WIDTH, HEIGHT);

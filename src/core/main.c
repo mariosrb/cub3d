@@ -32,29 +32,6 @@ void draw_square(t_square square, t_game *game)
 	}
 }
 
-char	**init_map(void)
-{
-	char	**map;
-
-	map = malloc(sizeof(char *) * 11);
-	if (!map)
-		return (NULL);
-
-	map[0] = "111111111111111";
-	map[1] = "100000000000001";
-	map[2] = "100010000000001";
-	map[3] = "100010010001001";
-	map[4] = "100000101000001";
-	map[5] = "100100101000001";
-	map[6] = "100000111000001";
-	map[7] = "100000000000001";
-	map[8] = "100000000000001";
-	map[9] = "111111111111111";
-	map[10] = NULL;
-
-	return (map);
-}
-
 bool	is_touching(float px, float py, t_game *game)
 {
 	int x;
