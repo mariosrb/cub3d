@@ -34,8 +34,9 @@ int	draw_loop(void *param)
 
 	x = 0;
     clear_image(game);
-    player_move(&game->player, game);
-	player_move_strafe(&game->player, game);
+	player_move(&game->player, game);
+    // player_move(&game->player, game);
+	// player_move_strafe(&game->player, game);
     if (DEBUG)
     {
 		player_square.x = game->player.pos_x;

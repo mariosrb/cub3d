@@ -36,7 +36,7 @@ SRCS = $(SRCDIR)/core/main.c \
 # Bonus files
 BONUS_SRCS = $(SRCS) \
              $(SRCDIR)/bonus/minimap.c \
-             $(SRCDIR)/bonus/advanced_collision.c
+             $(SRCDIR)/bonus/collision.c
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 BONUS_OBJS = $(BONUS_SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
