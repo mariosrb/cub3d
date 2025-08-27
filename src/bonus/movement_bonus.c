@@ -80,7 +80,7 @@ static void	move_forward_back(t_player *player, t_game *game)
 	}
 }
 
-void player_move(t_player *player, t_game *game)
+void player_move_bonus(t_player *player, t_game *game)
 {
 	double	angle_speed;
 
