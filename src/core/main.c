@@ -52,9 +52,9 @@ int main(void)
 
 	init_game(&game);
 
-	mlx_hook(game.win, 2, 1L << 0, update_player_press, &game.player);
-	mlx_hook(game.win, 3, 1L << 1, update_player_release, &game.player);
-
+	mlx_hook(game.win, 2, 1L << 0, handle_keypress, &game);
+	mlx_hook(game.win, 3, 1L << 1, handle_keyrelease, &game);
+	mlx_hook(game.win, 17, 1L << 17, handle_close_button, &game);
 	mlx_loop_hook(game.mlx, draw_loop, &game);
 	mlx_loop(game.mlx);
 

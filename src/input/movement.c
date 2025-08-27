@@ -37,8 +37,8 @@ void player_move(t_player *player)
 	double	speed;
 	double	angle_speed;
 
-	speed = 3.0;
-	angle_speed = 0.01;
+	speed = 2.0;
+	angle_speed = 0.05;
 	if (player->rotate_left)
 		rotate_left(player, angle_speed);
 	if (player->rotate_right)

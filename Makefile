@@ -21,6 +21,7 @@ LIBFTDIR = lib/libft
 SRCS = $(SRCDIR)/core/main.c \
        $(SRCDIR)/core/game_init.c \
 	   $(SRCDIR)/core/player.c \
+	   $(SRCDIR)/core/player_utils.c \
        $(SRCDIR)/parsing/parser_main.c \
        $(SRCDIR)/parsing/parser_config.c \
        $(SRCDIR)/parsing/parser_utils.c \

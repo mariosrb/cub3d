@@ -11,14 +11,6 @@
 # define WHITE   0x00FFFFFF
 # define BLACK   0x00000000
 
-# define W 119
-# define A 97
-# define S 115
-# define D 100
-# define LEFT 65361
-# define RIGHT 65363
-# define DEBUG 0
-
 # define TEX_NORTH 0
 # define TEX_SOUTH 1
 # define TEX_EAST 2
