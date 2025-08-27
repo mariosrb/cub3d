@@ -35,7 +35,7 @@ int		update_player_release(int keycode, t_player *player);
  *
  * @param player Pointeur vers la structure du joueur
  */
-void	player_move(t_player *player);
+void player_move(t_player *player, t_game *game);
 
 /**
  * @brief Ferme proprement le programme en libérant toutes les ressources allouées.
@@ -84,5 +84,6 @@ bool		is_direction_char(char c);
 t_direction	char_to_direction(char c);
 t_start_pos	init_start_pos(t_game *game, int x, int y);
 void		set_player_position(t_player *player, t_start_pos start);
+bool		is_touching(float px, float py, t_game *game);
 
 #endif

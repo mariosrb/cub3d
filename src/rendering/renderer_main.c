@@ -34,7 +34,7 @@ int	draw_loop(void *param)
 
 	x = 0;
     clear_image(game);
-    player_move(&game->player);
+    player_move(&game->player, game);
 
     if (DEBUG)
     {
@@ -47,7 +47,7 @@ int	draw_loop(void *param)
     }
     while (x < WIDTH)
     {
-        double cameraX = 2 * x / (double)WIDTH - 1; //x-coordinate in camera space
+        double cameraX = 2 * x / (double)WIDTH - 1;
         double rayDirX = game->player.dirX + game->player.planeX * cameraX;
         double rayDirY = game->player.dirY + game->player.planeY * cameraX;
         cast_dda_ray(game, rayDirX, rayDirY, x);
