@@ -80,6 +80,7 @@ int	handle_keypress(int keycode, t_game *game);
  */
 int	handle_keyrelease(int keycode, t_game *game);
 
+void		player_move_strafe(t_player *player, t_game *game);
 bool		is_direction_char(char c);
 t_direction	char_to_direction(char c);
 t_start_pos	init_start_pos(t_game *game, int x, int y);

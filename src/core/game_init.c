@@ -11,7 +11,7 @@ static void	init_map_structure(t_map *mapp)
 	mapp->grid[2] = "100010000100001";
 	mapp->grid[3] = "100010000001001";
 	mapp->grid[4] = "100000101000001";
-	mapp->grid[5] = "1001001W1000001";
+	mapp->grid[5] = "1001001N1000001";
 	mapp->grid[6] = "100000111000001";
 	mapp->grid[7] = "100000000000001";
 	mapp->grid[8] = "100000000000001";

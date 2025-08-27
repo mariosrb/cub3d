@@ -11,19 +11,16 @@ int load_texture(t_game *game, char *path, int texture_index)
         printf("Error\nFailed to load texture: %s\n", path);
         return (0);
     }
-
     game->config.textures[texture_index].addr = mlx_get_data_addr(
         game->config.textures[texture_index].img,
         &game->config.textures[texture_index].bits_per_pixel,
         &game->config.textures[texture_index].line_lenght,
         &game->config.textures[texture_index].endian);
-
     if (!game->config.textures[texture_index].addr)
     {
         printf("Error\nFailed to get texture data\n");
         return (0);
     }
-
     printf("Texture %d loaded: %dx%d from %s\n",
         texture_index, game->config.textures[texture_index].width,
         game->config.textures[texture_index].height, path);

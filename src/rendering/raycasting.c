@@ -73,8 +73,11 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
     if(side == 0)
         perpWallDist = (sideDistX - deltaDistX);
     else
+	{
         perpWallDist = (sideDistY - deltaDistY);
-
+	}
+	if (perpWallDist <= 0.001)
+		perpWallDist = 0.001;
     // Calculate wallX (où exactement le rayon touche le mur)
     double wallX;
     if (side == 0)
@@ -100,7 +103,6 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
 			texNum = 0; // North (on regarde vers le nord, mur est au nord)
 	}
     int texX = (int)(wallX * game->config.textures[texNum].width);
-
     // Ajuster texX selon direction pour éviter les miroirs
     if (side == 0 && rayDirX > 0)
         texX = game->config.textures[texNum].width - texX - 1;
