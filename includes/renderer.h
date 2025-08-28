@@ -14,5 +14,6 @@ void	draw_map(t_game *game);
  */
 void	clear_image(t_game *game);
 int		create_rgb(int r, int g, int b);
+void	draw_minimap(t_game *game);
 
 #endif

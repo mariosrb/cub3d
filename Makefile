@@ -61,6 +61,7 @@ BONUS_SRCS = $(SRCDIR)/core/main.c \
 			 $(SRCDIR)/rendering/texture_manager.c \
 			 $(SRCDIR)/input/input_handler.c \
 			 $(SRCDIR)/bonus/movement_bonus.c \
+			 $(SRCDIR)/bonus/minimap_bonus.c \
 			 $(SRCDIR)/utils/error_handler.c
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
