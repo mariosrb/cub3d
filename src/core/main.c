@@ -55,18 +55,14 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 		return (print_error(ERROR_ARGS));
-
 	er_code = parser_main(argv[1], &config, &map);
 	if (er_code != SUCCESS)
 		return (return_error_parsing(&config, &map, er_code));
-
 	init_game(&game, &config, &map);
-
 	mlx_hook(game.win, 2, 1L << 0, handle_keypress, &game);
 	mlx_hook(game.win, 3, 1L << 1, handle_keyrelease, &game);
 	mlx_hook(game.win, 17, 1L << 17, handle_close_button, &game);
 	mlx_loop_hook(game.mlx, draw_loop, &game);
 	mlx_loop(game.mlx);
-
 	return (0);
 }

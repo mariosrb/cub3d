@@ -31,6 +31,8 @@ int	print_error(int er_code)
 		printf("Error: extra or missing characters on the map\n");
 	else if (er_code == ERROR_MAP)
 		printf("Error: incorrect map\n");
+	else if (er_code == ERROR_ARGS)
+		printf("Error: invalid arguments\n");
 	return (1);
 }
 

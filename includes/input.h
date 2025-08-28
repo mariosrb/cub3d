@@ -8,7 +8,7 @@
 # define ESC 65307
 # define LEFT 65361
 # define RIGHT 65363
-# define DEBUG 0
+# define DEBUG 1
 
 typedef struct s_player t_player;
 
