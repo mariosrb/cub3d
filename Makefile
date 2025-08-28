@@ -17,14 +17,21 @@ SRCDIR = src
 OBJDIR = obj
 LIBFTDIR = lib/libft
 
-# Source files (architecture modulaire)
+# Source files
 SRCS = $(SRCDIR)/core/main.c \
        $(SRCDIR)/core/game_init.c \
        $(SRCDIR)/core/player.c \
        $(SRCDIR)/core/player_utils.c \
        $(SRCDIR)/parsing/parser_main.c \
-       $(SRCDIR)/parsing/parser_config.c \
-       $(SRCDIR)/parsing/parser_utils.c \
+	   $(SRCDIR)/parsing/color_config.c \
+	   $(SRCDIR)/parsing/config_utils.c \
+	   $(SRCDIR)/parsing/config.c \
+	   $(SRCDIR)/parsing/error.c \
+	   $(SRCDIR)/parsing/map.c \
+	   $(SRCDIR)/parsing/map_utils.c \
+	   $(SRCDIR)/parsing/map_utils2.c \
+	   $(SRCDIR)/parsing/texture_config.c \
+	   $(SRCDIR)/parsing/utils.c \
        $(SRCDIR)/rendering/renderer_main.c \
        $(SRCDIR)/rendering/raycasting.c \
        $(SRCDIR)/rendering/draw_utils.c \
@@ -33,10 +40,28 @@ SRCS = $(SRCDIR)/core/main.c \
        $(SRCDIR)/input/movement.c \
        $(SRCDIR)/utils/error_handler.c
 
-# Bonus files (CORRIGÉ - pas de doublons)
-BONUS_SRCS = $(SRCS) \
-             $(SRCDIR)/bonus/minimap.c \
-             $(SRCDIR)/bonus/movement_bonus.c
+# Bonus files
+BONUS_SRCS = $(SRCDIR)/core/main.c \
+			 $(SRCDIR)/core/game_init.c \
+			 $(SRCDIR)/core/player.c \
+			 $(SRCDIR)/core/player_utils.c \
+			 $(SRCDIR)/parsing/parser_main.c \
+			 $(SRCDIR)/bonus/renderer_main_bonus.c \
+			 $(SRCDIR)/rendering/raycasting.c \
+			 $(SRCDIR)/rendering/draw_utils.c \
+			 $(SRCDIR)/rendering/texture_manager.c \
+			 $(SRCDIR)/input/input_handler.c \
+			 $(SRCDIR)/utils/error_handler.c \
+             $(SRCDIR)/bonus/minimap_bonus.c \
+             $(SRCDIR)/bonus/movement_bonus.c \
+			 $(SRCDIR)/parsing/color_config.c \
+		 	 $(SRCDIR)/parsing/config.c \
+		 	 $(SRCDIR)/parsing/error.c \
+		 	 $(SRCDIR)/parsing/map.c \
+		 	 $(SRCDIR)/parsing/map_utils.c \
+		 	 $(SRCDIR)/parsing/map_utils2.c \
+		  	 $(SRCDIR)/parsing/texture_config.c \
+			 $(SRCDIR)/parsing/utils.c \
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 BONUS_OBJS = $(BONUS_SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)

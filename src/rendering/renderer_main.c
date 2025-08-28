@@ -7,12 +7,12 @@ void	draw_map(t_game *game)
 	int			j;
 
 	i = 0;
-	while (i < game->mapp.height && game->mapp.grid[i])
+	while (i < game->map.height && game->map.grid[i])
 	{
 		j = 0;
-		while (j < game->mapp.width && game->mapp.grid[i][j])
+		while (j < game->map.width && game->map.grid[i][j])
 		{
-			if (game->mapp.grid[i][j] == '1')
+			if (game->map.grid[i][j] == '1')
 			{
 				square.x = j * TILE_SIZE;
 				square.y = i * TILE_SIZE;
@@ -35,8 +35,6 @@ int	draw_loop(void *param)
 	x = 0;
     clear_image(game);
 	player_move(&game->player, game);
-    // player_move(&game->player, game);
-	// player_move_strafe(&game->player, game);
     if (DEBUG)
     {
 		player_square.x = game->player.pos_x;

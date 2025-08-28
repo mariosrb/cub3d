@@ -26,7 +26,7 @@
 #include "types.h"
 
 char	**init_map(void);
-void	init_game(t_game *g);
+void	init_game(t_game *g, t_config *config, t_map *map);
 int 	load_texture(t_game *game, char *path, int texture_index);
 int		get_texture_pixel(t_game *game, int texture_index, int x, int y);
 
@@ -48,13 +48,6 @@ void	put_pixel(t_game *game, int x, int y, int color);
  * @param color Couleur des bords du carré (format 0xRRGGBB).
  */
 void	draw_square(t_square square, t_game *game);
-
-/**
- * @brief Initialise le jeu : joueur, MLX, fenêtre et image.
- *
- * @param g Pointeur vers la structure principale du jeu.
- */
-void	init_game(t_game *g);
 
 /**
  * @brief Initialise la structure du joueur avec ses paramètres par défaut.

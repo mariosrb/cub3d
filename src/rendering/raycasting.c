@@ -64,8 +64,8 @@ void	cast_dda_ray(t_game *game, double rayDirX, double rayDirY, int x)
             side = 1;
         }
         //Check if ray has hit a wall
-		if (mapX < 0 || mapY < 0 || mapY >= game->mapp.height ||
-			mapX >= game->mapp.width || game->mapp.grid[mapY][mapX] == '1')
+		if (mapX < 0 || mapY < 0 || mapY >= game->map.height ||
+			mapX >= game->map.width || game->map.grid[mapY][mapX] == '1')
 			hit = 1;
     }
 

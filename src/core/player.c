@@ -11,12 +11,12 @@ static	t_start_pos	find_player_position(t_game *game)
 	start.y = -1;
 	start.dir = NORTH;
 	y = 0;
-	while (y < game->mapp.height && game->mapp.grid[y])
+	while (y < game->map.height && game->map.grid[y])
 	{
 		x = 0;
-		while (x < game->mapp.width && game->mapp.grid[y][x])
+		while (x < game->map.width && game->map.grid[y][x])
 		{
-			if (is_direction_char(game->mapp.grid[y][x]))
+			if (is_direction_char(game->map.grid[y][x]))
 				return (init_start_pos(game, x, y));
 			x++;
 		}

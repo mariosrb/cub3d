@@ -39,18 +39,28 @@ bool	is_touching(float px, float py, t_game *game)
 
 	x = px / TILE_SIZE;
 	y = py / TILE_SIZE;
-	if (x < 0 || y < 0 || y >= game->mapp.height || x >= game->mapp.width)
+	if (x < 0 || y < 0 || y >= game->map.height || x >= game->map.width)
 		return (true);
-	if (game->mapp.grid[y][x] == '1')
+	if (game->map.grid[y][x] == '1')
 		return (true);
 	return (false);
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
-	t_game game;
+	t_game 		game;
+	t_config	config;
+	t_map		map;
+	int			er_code;
 
-	init_game(&game);
+	if (argc != 2)
+		return (print_error(ERROR_ARGS));
+
+	er_code = parser_main(argv[1], &config, &map);
+	if (er_code != SUCCESS)
+		return (return_error_parsing(&config, &map, er_code));
+
+	init_game(&game, &config, &map);
 
 	mlx_hook(game.win, 2, 1L << 0, handle_keypress, &game);
 	mlx_hook(game.win, 3, 1L << 1, handle_keyrelease, &game);

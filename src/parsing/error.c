@@ -1,6 +1,6 @@
 #include "../../includes/cub3d.h"
 
-void	parser_free_lines(char **lines)
+void parser_free_lines(char **lines)
 {
 	int	i;
 

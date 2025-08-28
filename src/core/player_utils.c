@@ -27,7 +27,7 @@ t_start_pos	init_start_pos(t_game *game, int x, int y)
 
 	start.x = x;
 	start.y = y;
-	start.dir = char_to_direction(game->mapp.grid[y][x]);
+	start.dir = char_to_direction(game->map.grid[y][x]);
 	return (start);
 }
 

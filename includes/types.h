@@ -17,13 +17,16 @@ typedef enum e_direction
 
 typedef enum e_error_code
 {
-	SUCCESS = 0,
-	ERROR_ARGS = 1,
-	ERROR_FILE = 2,
-	ERROR_MEMORY = 3,
-	ERROR_CONFIG = 4,
-	ERROR_MAP = 5,
-	ERROR_MLX = 6
+	SUCCESS,
+	ERROR_ARGS,
+	ERROR_FILE,
+	ERROR_MEMORY,
+	ERROR_CONFIG,
+	ERROR_MAP,
+	ERROR_MLX,
+	ERROR_EXTENSION,
+	ERROR_WALLS,
+	ERROR_CHARACTERS
 }	t_error_code;
 
 /* ************************************************************************** */
@@ -84,7 +87,7 @@ typedef struct s_player
 typedef struct s_game
 {
 	t_config		config;
-	t_map			mapp;
+	t_map			map;
 	t_player		player;
 	void			*mlx;
 	void			*win;

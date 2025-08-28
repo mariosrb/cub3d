@@ -15,8 +15,8 @@ int	close_program(t_game *game)
 		mlx_destroy_image(game->mlx, game->img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
-	if (game->mapp.grid)
-		free(game->mapp.grid);
+	if (game->map.grid)
+		free(game->map.grid);
 	exit(0);
 	return (0);
 }
