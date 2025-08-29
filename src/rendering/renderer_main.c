@@ -28,20 +28,20 @@ void	draw_map(t_game *game)
 
 int	draw_loop(void *param)
 {
-    t_game *game = (t_game *)param;
+	t_game *game = (t_game *)param;
 	int		x;
 
 	x = 0;
-    clear_image(game);
+	clear_image(game);
 	player_move(&game->player, game);
-    while (x < WIDTH)
-    {
-        double cameraX = 2 * x / (double)WIDTH - 1;
-        double rayDirX = game->player.dirX + game->player.planeX * cameraX;
-        double rayDirY = game->player.dirY + game->player.planeY * cameraX;
-        cast_dda_ray(game, rayDirX, rayDirY, x);
+	while (x < WIDTH)
+	{
+		double cameraX = 2 * x / (double)WIDTH - 1;
+		double rayDirX = game->player.dirX + game->player.planeX * cameraX;
+		double rayDirY = game->player.dirY + game->player.planeY * cameraX;
+		cast_dda_ray(game, rayDirX, rayDirY, x);
 		x++;
-    }
-    mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-    return (0);
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	return (0);
 }
