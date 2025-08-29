@@ -13,6 +13,7 @@ void parser_free_lines(char **lines)
 		i++;
 	}
 	free(lines);
+	lines = NULL;
 }
 
 int	print_error(int er_code)
@@ -40,7 +41,7 @@ void	parser_free_all(t_config *config, t_map *map)
 {
 	if (map->grid)
 		parser_free_lines(map->grid);
-	map->grid = NULL;
+	// map->grid = NULL;
 	if (config->east_texture)
 		free(config->east_texture);
 	if (config->south_texture)

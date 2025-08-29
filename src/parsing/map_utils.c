@@ -53,7 +53,7 @@ bool	is_next_fill(t_map *map, int pos1, int pos2)
 {
 	if (pos1 < 0 || pos1 >= map->height)
 		return (true);
-	if (!map->grid[pos1][pos2])
+	if (pos2 < 0 || !map->grid[pos1][pos2])
 		return (true);
 	if (map->grid[pos1][pos2] != ' ' && map->grid[pos1][pos2] != '1')
 		return (false);

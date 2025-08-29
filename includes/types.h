@@ -36,7 +36,7 @@ typedef enum e_error_code
 typedef	struct s_textures
 {
 	void			*img;
-	char			*addr;
+	char			*addr;  // do not free twice!!
 	int				width;
 	int				height;
 	int				bits_per_pixel;

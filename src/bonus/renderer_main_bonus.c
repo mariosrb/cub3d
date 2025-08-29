@@ -29,31 +29,31 @@ void	draw_map(t_game *game)
 int	draw_loop(void *param)
 {
 	t_square	player_square;
-    t_game *game = (t_game *)param;
+	t_game *game = (t_game *)param;
 	int		x;
 
 	x = 0;
-    clear_image(game);
-    player_move_bonus(&game->player, game);
+	clear_image(game);
+	player_move_bonus(&game->player, game);
 	player_move_strafe(&game->player, game);
-    if (DEBUG)
-    {
+	if (DEBUG)
+	{
 		player_square.x = game->player.pos_x;
 		player_square.y = game->player.pos_y;
 		player_square.size = 25;
 		player_square.color = GREEN;
-        draw_square(player_square, game);
-        draw_map(game);
-    }
-    while (x < WIDTH)
-    {
-        double cameraX = 2 * x / (double)WIDTH - 1;
-        double rayDirX = game->player.dirX + game->player.planeX * cameraX;
-        double rayDirY = game->player.dirY + game->player.planeY * cameraX;
-        cast_dda_ray(game, rayDirX, rayDirY, x);
+		draw_square(player_square, game);
+		draw_map(game);
+	}
+	while (x < WIDTH)
+	{
+		double cameraX = 2 * x / (double)WIDTH - 1;
+		double rayDirX = game->player.dirX + game->player.planeX * cameraX;
+		double rayDirY = game->player.dirY + game->player.planeY * cameraX;
+		cast_dda_ray(game, rayDirX, rayDirY, x);
 		x++;
-    }
+	}
 	draw_minimap(game);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-    return (0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	return (0);
 }

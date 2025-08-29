@@ -28,22 +28,12 @@ void	draw_map(t_game *game)
 
 int	draw_loop(void *param)
 {
-	// t_square	player_square;
     t_game *game = (t_game *)param;
 	int		x;
 
 	x = 0;
     clear_image(game);
 	player_move(&game->player, game);
-    // if (DEBUG)
-    // {
-	// 	player_square.x = game->player.pos_x;
-	// 	player_square.y = game->player.pos_y;
-	// 	player_square.size = 25;
-	// 	player_square.color = GREEN;
-    //     draw_square(player_square, game);
-    //     draw_map(game);
-    // }
     while (x < WIDTH)
     {
         double cameraX = 2 * x / (double)WIDTH - 1;
