@@ -4,6 +4,7 @@ void	init_ray_data(t_ray_data *r, t_game *g, t_ray_dir ray_dir)
 {
 	r->map_x = (int)(g->player.pos_x / TILE_SIZE);
 	r->map_y = (int)(g->player.pos_y / TILE_SIZE);
+	r->hit = 0;
 	if (ray_dir.x == 0)
 		r->delta_distx = 1e30;
 	else
@@ -49,13 +50,13 @@ void	perform_dda(t_ray_data *ray, t_game *game)
 	{
 		if (ray->side_distx < ray->side_disty)
 		{
-			ray->side_distx += ray->side_distx;
+			ray->side_distx += ray->delta_distx;
 			ray->map_x += ray->step_x;
 			ray->side = 0;
 		}
 		else
 		{
-			ray->side_disty += ray->side_disty;
+			ray->side_disty += ray->delta_disty;
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
@@ -107,7 +108,7 @@ void	cal_text_data(t_text_data *t, t_ray_data *r, t_game *g, t_ray_dir r_dir)
 {
 	t->tex_num = get_tex_num(r->side, r_dir);
 	t->tex_x = (int)(r->wall_x * g->config.textures[t->tex_num].width);
-	if (r->side == 0 && r_dir.x > 0)
+	if (r->side == 0 && r_dir.y > 0)
 		t->tex_x = g->config.textures[t->tex_num].width - t->tex_x - 1;
 	if (r->side == 1 && r_dir.x < 0)
 		t->tex_x = g->config.textures[t->tex_num].width - t->tex_x - 1;
@@ -118,7 +119,7 @@ void	cal_text_data(t_text_data *t, t_ray_data *r, t_game *g, t_ray_dir r_dir)
 	t->draw_end = t->line_height / 2 + HEIGHT / 2;
 	if (t->draw_end >= HEIGHT)
 		t->draw_end = HEIGHT - 1;
-	t->step = 1.0 - g->config.textures[t->tex_num].height / t->line_height;
+	t->step = 1.0 * g->config.textures[t->tex_num].height / t->line_height;
 	t->tex_pos = (t->draw_start - HEIGHT / 2 + t->line_height / 2) * t->step;
 }
 
