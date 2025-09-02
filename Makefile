@@ -34,11 +34,12 @@ SRCS = $(SRCDIR)/core/main.c \
 	   $(SRCDIR)/parsing/utils.c \
        $(SRCDIR)/rendering/renderer_main.c \
        $(SRCDIR)/rendering/raycasting.c \
+	   $(SRCDIR)/rendering/raycasting_utils.c \
        $(SRCDIR)/rendering/draw_utils.c \
        $(SRCDIR)/rendering/texture_manager.c \
        $(SRCDIR)/input/input_handler.c \
        $(SRCDIR)/input/movement.c \
-       $(SRCDIR)/utils/error_handler.c
+	   $(SRCDIR)/input/input_utils.c
 
 # Bonus files
 BONUS_SRCS = $(SRCDIR)/core/main.c \
@@ -62,7 +63,9 @@ BONUS_SRCS = $(SRCDIR)/core/main.c \
 			 $(SRCDIR)/input/input_handler.c \
 			 $(SRCDIR)/bonus/movement_bonus.c \
 			 $(SRCDIR)/bonus/minimap_bonus.c \
-			 $(SRCDIR)/utils/error_handler.c
+			 $(SRCDIR)/rendering/raycasting_utils.c \
+			 $(SRCDIR)/input/input_utils.c
+
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 BONUS_OBJS = $(BONUS_SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)

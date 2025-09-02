@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 14:33:49 by mdodevsk          #+#    #+#             */
+/*   Updated: 2025/09/02 16:06:34 by mdodevsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 // Trouve la position de depart du joueur dans la map
-static	t_start_pos	find_player_position(t_game *game)
+static t_start_pos	find_player_position(t_game *game)
 {
 	t_start_pos	start;
 	int			x;
@@ -30,23 +42,23 @@ static void	set_player_direction(t_player *player, t_direction dir)
 {
 	if (dir == NORTH)
 	{
-		player->dirX = 0.0;
-		player->dirY = -1.0;
+		player->dirx = 0.0;
+		player->diry = -1.0;
 	}
 	else if (dir == SOUTH)
 	{
-		player->dirX = 0.0;
-		player->dirY = 1.0;
+		player->dirx = 0.0;
+		player->diry = 1.0;
 	}
 	else if (dir == EAST)
 	{
-		player->dirX = 1.0;
-		player->dirY = 0.0;
+		player->dirx = 1.0;
+		player->diry = 0.0;
 	}
 	else if (dir == WEST)
 	{
-		player->dirX = -1.0;
-		player->dirY = 0.0;
+		player->dirx = -1.0;
+		player->diry = 0.0;
 	}
 }
 
@@ -55,23 +67,23 @@ static void	set_camera_plane(t_player *player, t_direction dir)
 {
 	if (dir == NORTH)
 	{
-		player->planeX = -0.66;
-		player->planeY = 0.0;
+		player->planex = -0.66;
+		player->planey = 0.0;
 	}
 	else if (dir == SOUTH)
 	{
-		player->planeX = 0.66;
-		player->planeY = 0.0;
+		player->planex = 0.66;
+		player->planey = 0.0;
 	}
 	else if (dir == EAST)
 	{
-		player->planeX = 0.0;
-		player->planeY = -0.66;
+		player->planex = 0.0;
+		player->planey = -0.66;
 	}
 	else if (dir == WEST)
 	{
-		player->planeX = 0.0;
-		player->planeY = 0.66;
+		player->planex = 0.0;
+		player->planey = 0.66;
 	}
 }
 

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 14:20:21 by mdodevsk          #+#    #+#             */
+/*   Updated: 2025/09/02 14:20:22 by mdodevsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
-void parser_free_lines(char **lines)
+void	parser_free_lines(char **lines)
 {
 	int	i;
 
@@ -41,7 +53,6 @@ void	parser_free_all(t_config *config, t_map *map)
 {
 	if (map->grid)
 		parser_free_lines(map->grid);
-	// map->grid = NULL;
 	if (config->east_texture)
 		free(config->east_texture);
 	if (config->south_texture)

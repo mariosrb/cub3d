@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 15:51:44 by mdodevsk          #+#    #+#             */
+/*   Updated: 2025/09/02 15:53:33 by mdodevsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef INPUT_H
 # define INPUT_H
 
@@ -10,7 +22,7 @@
 # define RIGHT 65363
 # define DEBUG 1
 
-typedef struct s_player t_player;
+typedef struct s_player	t_player;
 
 /**
  * @brief Met à jour l'état du joueur lorsqu'une touche est pressée
@@ -19,7 +31,7 @@ typedef struct s_player t_player;
  * @param player Pointeur vers la structure du joueur
  * @return int Toujours 0
  */
-int		update_player_press(int keycode, t_player *player);
+int			update_player_press(int keycode, t_player *player);
 
 /**
  * @brief Met à jour l'état du joueur lorsqu'une touche est relâchée
@@ -28,33 +40,36 @@ int		update_player_press(int keycode, t_player *player);
  * @param player Pointeur vers la structure du joueur
  * @return int Toujours 0
  */
-int		update_player_release(int keycode, t_player *player);
-
+int			update_player_release(int keycode, t_player *player);
 /**
  * @brief Déplace le joueur selon son état actuel (touches pressées)
  *
  * @param player Pointeur vers la structure du joueur
  */
-void player_move(t_player *player, t_game *game);
+void		player_move(t_player *player, t_game *game);
 
 /**
- * @brief Ferme proprement le programme en libérant toutes les ressources allouées.
+ * @brief Ferme proprement le programme en libérant toutes les ressources
+ * allouées.
  *
  * Cette fonction détruit les textures, l'image principale, la fenêtre,
  * libère la mémoire de la carte, puis termine le processus.
  *
- * @param game Structure principale du jeu contenant les ressources à libérer.
+ * @param game Structure principale du jeu contenant les ressources
+ * à libérer.
  * @return Toujours 0 (même si la fonction appelle exit(0)).
  */
-int		close_program(t_game *game);
+int			close_program(t_game *game);
 
 /**
- * @brief Gère la fermeture de la fenêtre via le bouton de fermeture (croix rouge).
+ * @brief Gère la fermeture de la fenêtre via le bouton de fermeture
+ * (croix rouge).
  *
- * @param game Structure principale du jeu contenant les ressources à libérer.
+ * @param game Structure principale du jeu contenant les ressources à
+ * libérer.
  * @return Toujours 0.
  */
-int	handle_close_button(t_game *game);
+int			handle_close_button(t_game *game);
 
 /**
  * @brief Gère l'événement d'appui sur une touche du clavier.
@@ -66,7 +81,7 @@ int	handle_close_button(t_game *game);
  * @param game Structure principale du jeu.
  * @return Toujours 0.
  */
-int	handle_keypress(int keycode, t_game *game);
+int			handle_keypress(int keycode, t_game *game);
 
 /**
  * @brief Gère l'événement de relâchement d'une touche du clavier.
@@ -78,7 +93,7 @@ int	handle_keypress(int keycode, t_game *game);
  * @param game Structure principale du jeu.
  * @return Toujours 0.
  */
-int	handle_keyrelease(int keycode, t_game *game);
+int			handle_keyrelease(int keycode, t_game *game);
 
 void		player_move_bonus(t_player *player, t_game *game);
 void		player_move_strafe(t_player *player, t_game *game);

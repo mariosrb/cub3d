@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 14:20:47 by mdodevsk          #+#    #+#             */
+/*   Updated: 2025/09/02 14:20:48 by mdodevsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
-bool parser_is_valid_extension(const char *filename)
+bool	parser_is_valid_extension(const char *filename)
 {
 	int	len;
 
@@ -15,5 +27,3 @@ bool parser_is_valid_extension(const char *filename)
 		return (false);
 	return (true);
 }
-
-

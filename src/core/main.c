@@ -1,19 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 14:33:54 by mdodevsk          #+#    #+#             */
+/*   Updated: 2025/09/02 14:35:28 by mdodevsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 // Fonction qui met des pixels
-void put_pixel(t_game *game, int x, int y, int color)
+void	put_pixel(t_game *game, int x, int y, int color)
 {
-	int pixel;
+	int	pixel;
 
 	if (x >= WIDTH || x < 0 || y >= HEIGHT || y < 0)
-		return;
+		return ;
 	pixel = (y * game->size_line) + (x * (game->bpp / 8));
 	game->data[pixel + 0] = (color) & 0xFF;
 	game->data[pixel + 1] = (color >> 8) & 0xFF;
 	game->data[pixel + 2] = (color >> 16) & 0xFF;
 }
 
-void draw_square(t_square square, t_game *game)
+void	draw_square(t_square square, t_game *game)
 {
 	int	i;
 	int	j;
@@ -34,8 +46,8 @@ void draw_square(t_square square, t_game *game)
 
 bool	is_touching(float px, float py, t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = px / TILE_SIZE;
 	y = py / TILE_SIZE;
@@ -46,9 +58,9 @@ bool	is_touching(float px, float py, t_game *game)
 	return (false);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_game 		game;
+	t_game		game;
 	t_config	config;
 	t_map		map;
 	int			er_code;

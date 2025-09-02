@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   renderer_main.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 14:19:43 by mdodevsk          #+#    #+#             */
+/*   Updated: 2025/09/02 16:09:32 by mdodevsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	draw_map(t_game *game)
@@ -28,18 +40,20 @@ void	draw_map(t_game *game)
 
 int	draw_loop(void *param)
 {
-	t_game *game = (t_game *)param;
-	int		x;
+	t_game		*game;
+	int			x;
+	double		camera_x;
+	t_ray_dir	ray_dir;
 
+	game = (t_game *)param;
 	x = 0;
 	clear_image(game);
 	player_move(&game->player, game);
 	while (x < WIDTH)
 	{
-		double cameraX = 2 * x / (double)WIDTH - 1;
-		t_ray_dir	ray_dir;
-		ray_dir.x = game->player.dirX + game->player.planeX * cameraX;
-		ray_dir.y = game->player.dirY + game->player.planeY * cameraX;
+		camera_x = 2 * x / (double)WIDTH - 1;
+		ray_dir.x = game->player.dirx + game->player.planex * camera_x;
+		ray_dir.y = game->player.diry + game->player.planey * camera_x;
 		cast_dda_ray(game, ray_dir, x);
 		x++;
 	}

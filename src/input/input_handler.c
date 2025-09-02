@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_handler.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 14:30:09 by mdodevsk          #+#    #+#             */
+/*   Updated: 2025/09/02 14:32:15 by mdodevsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 int	close_program(t_game *game)
@@ -56,22 +68,5 @@ int	update_player_press(int keycode, t_player *player)
 		player->rotate_left = true;
 	if (keycode == RIGHT)
 		player->rotate_right = true;
-	return (0);
-}
-
-int	update_player_release(int keycode, t_player *player)
-{
-	if (keycode == W)
-		player->move_up = false;
-	if (keycode == S)
-		player->move_down = false;
-	if (keycode == D)
-		player->move_right = false;
-	if (keycode == A)
-		player->move_left = false;
-	if (keycode == LEFT)
-		player->rotate_left = false;
-	if (keycode == RIGHT)
-		player->rotate_right = false;
 	return (0);
 }

@@ -1,29 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movement_bonus.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 14:39:27 by mdodevsk          #+#    #+#             */
+/*   Updated: 2025/09/02 16:03:48 by mdodevsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
-static void rotate_left(t_player *p, double angle_speed)
+static void	rotate_left(t_player *p, double angle_speed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = p->dirX;
-	p->dirX = p->dirX * cos(angle_speed) - p->dirY * sin(angle_speed);
-	p->dirY = old_dir_x * sin(angle_speed) + p->dirY * cos(angle_speed);
-	old_plane_x = p->planeX;
-	p->planeX = p->planeX * cos(angle_speed) - p->planeY * sin(angle_speed);
-	p->planeY = old_plane_x * sin(angle_speed) + p->planeY * cos(angle_speed);
+	old_dir_x = p->dirx;
+	p->dirx = p->dirx * cos(angle_speed) - p->diry * sin(angle_speed);
+	p->diry = old_dir_x * sin(angle_speed) + p->diry * cos(angle_speed);
+	old_plane_x = p->planex;
+	p->planex = p->planex * cos(angle_speed) - p->planey * sin(angle_speed);
+	p->planey = old_plane_x * sin(angle_speed) + p->planey * cos(angle_speed);
 }
 
-static void rotate_right(t_player *p, double angle_speed)
+static void	rotate_right(t_player *p, double angle_speed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = p->dirX;
-	p->dirX = p->dirX * cos(-angle_speed) - p->dirY * sin(-angle_speed);
-	p->dirY = old_dir_x * sin(-angle_speed) + p->dirY * cos(-angle_speed);
-	old_plane_x = p->planeX;
-	p->planeX = p->planeX * cos(-angle_speed) - p->planeY * sin(-angle_speed);
-	p->planeY = old_plane_x * sin(-angle_speed) + p->planeY * cos(-angle_speed);
+	old_dir_x = p->dirx;
+	p->dirx = p->dirx * cos(-angle_speed) - p->diry * sin(-angle_speed);
+	p->diry = old_dir_x * sin(-angle_speed) + p->diry * cos(-angle_speed);
+	old_plane_x = p->planex;
+	p->planex = p->planex * cos(-angle_speed) - p->planey * sin(-angle_speed);
+	p->planey = old_plane_x * sin(-angle_speed) + p->planey * cos(-angle_speed);
 }
 
 void	player_move_strafe(t_player *player, t_game *game)
@@ -35,8 +47,8 @@ void	player_move_strafe(t_player *player, t_game *game)
 	speed = 2.0;
 	if (player->move_left)
 	{
-		new_x = player->pos_x - player->planeX * speed;
-		new_y = player->pos_y - player->planeY * speed;
+		new_x = player->pos_x - player->planex * speed;
+		new_y = player->pos_y - player->planey * speed;
 		if (!is_touching(new_x, player->pos_y, game))
 			player->pos_x = new_x;
 		if (!is_touching(player->pos_x, new_y, game))
@@ -44,8 +56,8 @@ void	player_move_strafe(t_player *player, t_game *game)
 	}
 	if (player->move_right)
 	{
-		new_x = player->pos_x + player->planeX * speed;
-		new_y = player->pos_y + player->planeY * speed;
+		new_x = player->pos_x + player->planex * speed;
+		new_y = player->pos_y + player->planey * speed;
 		if (!is_touching(new_x, player->pos_y, game))
 			player->pos_x = new_x;
 		if (!is_touching(player->pos_x, new_y, game))
@@ -62,8 +74,8 @@ static void	move_forward_back(t_player *player, t_game *game)
 	speed = 2.0;
 	if (player->move_up)
 	{
-		new_x = player->pos_x + player->dirX * speed;
-		new_y = player->pos_y + player->dirY * speed;
+		new_x = player->pos_x + player->dirx * speed;
+		new_y = player->pos_y + player->diry * speed;
 		if (!is_touching(new_x, player->pos_y, game))
 			player->pos_x = new_x;
 		if (!is_touching(player->pos_x, new_y, game))
@@ -71,8 +83,8 @@ static void	move_forward_back(t_player *player, t_game *game)
 	}
 	if (player->move_down)
 	{
-		new_x = player->pos_x - player->dirX * speed;
-		new_y = player->pos_y - player->dirY * speed;
+		new_x = player->pos_x - player->dirx * speed;
+		new_y = player->pos_y - player->diry * speed;
 		if (!is_touching(new_x, player->pos_y, game))
 			player->pos_x = new_x;
 		if (!is_touching(player->pos_x, new_y, game))
@@ -80,7 +92,7 @@ static void	move_forward_back(t_player *player, t_game *game)
 	}
 }
 
-void player_move_bonus(t_player *player, t_game *game)
+void	player_move_bonus(t_player *player, t_game *game)
 {
 	double	angle_speed;
 

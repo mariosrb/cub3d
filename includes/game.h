@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 15:54:28 by mdodevsk          #+#    #+#             */
+/*   Updated: 2025/09/02 15:54:29 by mdodevsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GAME_H
 # define GAME_H
 
@@ -18,16 +30,16 @@
 
 # define PI 3.14159265359
 
-#include "../lib/minilibx-linux/mlx.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <stdbool.h>
-#include <math.h>
-#include "types.h"
+# include "../lib/minilibx-linux/mlx.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <stdbool.h>
+# include <math.h>
+# include "types.h"
 
 char	**init_map(void);
 void	init_game(t_game *g, t_config *config, t_map *map);
-int 	load_texture(t_game *game, char *path, int texture_index);
+int		load_texture(t_game *game, char *path, int texture_index);
 int		get_texture_pixel(t_game *game, int texture_index, int x, int y);
 
 /**
@@ -55,6 +67,5 @@ void	draw_square(t_square square, t_game *game);
  * @param player Pointeur vers la structure joueur à initialiser.
  */
 void	init_player(t_player *player, t_game *game);
-
 
 #endif

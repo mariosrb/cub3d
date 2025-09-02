@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   types.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 15:29:44 by mdodevsk          #+#    #+#             */
+/*   Updated: 2025/09/02 16:16:20 by mdodevsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef TYPES_H
 # define TYPES_H
 
@@ -33,10 +45,10 @@ typedef enum e_error_code
 /*                              STRUCTURES                                    */
 /* ************************************************************************** */
 
-typedef	struct s_textures
+typedef struct s_textures
 {
 	void			*img;
-	char			*addr;  // do not free twice!!
+	char			*addr;
 	int				width;
 	int				height;
 	int				bits_per_pixel;
@@ -64,7 +76,7 @@ typedef struct s_config
 	int				ceiling_g;
 	int				ceiling_b;
 	t_texture		textures[4];
-	int 			floor_color;
+	int				floor_color;
 	int				ceiling_color;
 }	t_config;
 
@@ -72,10 +84,10 @@ typedef struct s_player
 {
 	float			pos_x;
 	float			pos_y;
-	double			dirX;
-	double			dirY;
-	double			planeX;
-	double			planeY;
+	double			dirx;
+	double			diry;
+	double			planex;
+	double			planey;
 	bool			move_up;
 	bool			move_down;
 	bool			move_left;
@@ -93,9 +105,9 @@ typedef struct s_game
 	void			*win;
 	void			*img;
 	char			*data;
-	int 			bpp;
-	int 			size_line;
-	int 			endian;
+	int				bpp;
+	int				size_line;
+	int				endian;
 }	t_game;
 
 typedef struct s_square
@@ -155,5 +167,12 @@ typedef struct s_ray_dir
 	double			x;
 	double			y;
 }	t_ray_dir;
+
+typedef struct s_minimap
+{
+	double			x;
+	double			y;
+	int				i;
+}	t_minimap;
 
 #endif
