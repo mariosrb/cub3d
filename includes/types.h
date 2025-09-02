@@ -122,5 +122,38 @@ typedef struct s_start_pos
 	t_direction		dir;
 }	t_start_pos;
 
+typedef struct s_ray_data
+{
+	int				map_x;
+	int				map_y;
+	double			side_distx;
+	double			side_disty;
+	double			delta_distx;
+	double			delta_disty;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	double			perp_wall_dist;
+	double			wall_x;
+}	t_ray_data;
+
+typedef struct s_text_data
+{
+	int				tex_num;
+	int				tex_x;
+	int				tex_y;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	double			step;
+	double			tex_pos;
+}	t_text_data;
+
+typedef struct s_ray_dir
+{
+	double			x;
+	double			y;
+}	t_ray_dir;
 
 #endif

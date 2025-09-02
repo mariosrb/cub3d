@@ -48,9 +48,10 @@ int	draw_loop(void *param)
 	while (x < WIDTH)
 	{
 		double cameraX = 2 * x / (double)WIDTH - 1;
-		double rayDirX = game->player.dirX + game->player.planeX * cameraX;
-		double rayDirY = game->player.dirY + game->player.planeY * cameraX;
-		cast_dda_ray(game, rayDirX, rayDirY, x);
+		t_ray_dir	ray_dir;
+		ray_dir.x = game->player.dirX + game->player.planeX * cameraX;
+		ray_dir.y = game->player.dirY + game->player.planeY * cameraX;
+		cast_dda_ray(game, ray_dir, x);
 		x++;
 	}
 	draw_minimap(game);
