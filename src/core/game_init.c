@@ -6,11 +6,33 @@
 /*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:33:15 by mdodevsk          #+#    #+#             */
-/*   Updated: 2025/09/02 14:36:36 by mdodevsk         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:49:34 by mdodevsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+static void	cleanup_partial_mlx(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (game->config.textures[i].img)
+			mlx_destroy_image(game->mlx, game->config.textures[i].img);
+		i++;
+	}
+	if (game->img)
+		mlx_destroy_image(game->mlx, game->img);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
+}
 
 void	init_config(t_config *config)
 {
@@ -23,7 +45,7 @@ void	init_config(t_config *config)
 	config->ceiling_b = -1;
 }
 
-void	init_game(t_game *g, t_config *config, t_map *map)
+int	init_game(t_game *g, t_config *config, t_map *map)
 {
 	g->config = *config;
 	g->map = *map;
@@ -38,6 +60,8 @@ void	init_game(t_game *g, t_config *config, t_map *map)
 		!load_texture(g, g->config.west_texture, 3))
 	{
 		printf("Error\nTexture loading failed\n");
+		cleanup_partial_mlx(g);
+		parser_free_all(config, map);
 		exit(1);
 	}
 	g->config.floor_color = create_rgb(g->config.floor_r,

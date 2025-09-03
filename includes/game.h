@@ -6,7 +6,7 @@
 /*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 15:54:28 by mdodevsk          #+#    #+#             */
-/*   Updated: 2025/09/02 15:54:29 by mdodevsk         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:50:58 by mdodevsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # include "types.h"
 
 char	**init_map(void);
-void	init_game(t_game *g, t_config *config, t_map *map);
+int		init_game(t_game *g, t_config *config, t_map *map);
 int		load_texture(t_game *game, char *path, int texture_index);
 int		get_texture_pixel(t_game *game, int texture_index, int x, int y);
 

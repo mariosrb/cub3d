@@ -6,7 +6,7 @@
 /*   By: mdodevsk <mdodevsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:33:54 by mdodevsk          #+#    #+#             */
-/*   Updated: 2025/09/02 14:35:28 by mdodevsk         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:51:17 by mdodevsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ int	main(int argc, char **argv)
 	er_code = parser_main(argv[1], &config, &map);
 	if (er_code != SUCCESS)
 		return (return_error_parsing(&config, &map, er_code));
-	init_game(&game, &config, &map);
+	if (!init_game(&game, &config, &map))
+		return (1);
 	mlx_hook(game.win, 2, 1L << 0, handle_keypress, &game);
 	mlx_hook(game.win, 3, 1L << 1, handle_keyrelease, &game);
 	mlx_hook(game.win, 17, 1L << 17, handle_close_button, &game);
